@@ -1,6 +1,8 @@
 # Sentiment Analysis of IMDB Movie Reviews
 
-I built this for Week 3 of my AI bootcamp, where the task was to create a sentiment analysis tool. I wanted to find out how well a computer can tell whether a movie review is positive or negative, so I tried two different approaches on 10,000 real IMDB reviews and checked each one against the labels in the dataset.
+https://sentiment-analysis-and-data-insights-kz26h5wq6wrdukralcqfrb.streamlit.app/
+
+I built this for Week 3 of my AI bootcamp, where the task was to create a sentiment analysis tool. It started as a way to find out how well a computer can tell whether a piece of text is positive or negative, and it has grown into a web app where you can upload any dataset and get an automatic analysis, including sentiment analysis for text columns. To test the sentiment side, I tried two different approaches on 10,000 real IMDB movie reviews and checked each one against the labels in the dataset.
 
 The first approach is VADER, a ready-made tool that scores text using a dictionary of words. The second is a machine learning model that I trained on labeled reviews. I compared how often each one gets it right, then looked at which words give a review away as positive or negative.
 
@@ -39,10 +41,6 @@ The simplest route is [Streamlit Community Cloud](https://streamlit.io/cloud) (f
 
 Other hosts that run a Python web process (Render, Railway, a Docker container on any server) work too, with the start command `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`.
 
-Things to know before sharing it publicly:
-
-- Uploaded files are processed in memory and not saved by the app, but a public URL means anyone can use it. Don't upload sensitive data to a public deployment, and add authentication if you need to restrict access.
-- Free hosting has limited memory. Files over 250,000 rows are sampled automatically, and sentiment analysis uses at most 50,000 rows (10,000 by default) so it stays responsive.
 
 ### Project structure
 
