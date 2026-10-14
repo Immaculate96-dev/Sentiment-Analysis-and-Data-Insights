@@ -14,6 +14,7 @@ Command-line use (original IMDB project):
 from __future__ import annotations
 
 import re
+import textwrap
 from collections import Counter
 
 import numpy as np
@@ -23,7 +24,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import ConfusionMatrixDisplay, classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 
-from plotting import COLORS, apply_style, color_for_label, new_axes
+from plotting import COLORS, NAVY_CMAP, apply_style, color_for_label, new_axes
+
+apply_style()
 
 # Standard stop-word lists remove "not", "no", "never", which would destroy the
 # very thing word pairs are meant to capture, so the negation words are kept.
@@ -270,8 +273,10 @@ def plot_accuracy_compare(accuracies: dict, ax=None):
     fig, ax = new_axes(ax)
     names = list(accuracies)
     values = list(accuracies.values())
-    palette = [COLORS["neutral"], COLORS["accent_light"], COLORS["accent"], COLORS["positive"]]
-    ax.bar([n.replace(" (", "\n(") for n in names], values, color=palette[: len(names)])
+    # greys and navies for the benchmarks, gold for the last (best) model
+    base = [COLORS["neutral"], COLORS["accent_light"], COLORS["accent"]]
+    palette = base[: len(names) - 1] + [COLORS["gold"]]
+    ax.bar([textwrap.fill(n, 14) for n in names], values, color=palette)
     ax.set_ylim(0, 1.08)
     ax.set_title("Accuracy comparison")
     ax.grid(axis="x", visible=False)
@@ -293,7 +298,7 @@ def plot_top_words(words, label, ax=None):
 
 def plot_confusion(cm, classes, ax=None):
     fig, ax = new_axes(ax, figsize=(4.5, 4))
-    ConfusionMatrixDisplay(cm, display_labels=classes).plot(ax=ax, cmap="Blues", colorbar=False)
+    ConfusionMatrixDisplay(cm, display_labels=classes).plot(ax=ax, cmap=NAVY_CMAP, colorbar=False)
     ax.set_title("Confusion matrix (test set)")
     ax.grid(False)
     return fig

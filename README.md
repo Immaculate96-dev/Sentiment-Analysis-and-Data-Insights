@@ -51,7 +51,8 @@ Things to know before sharing it publicly:
 | `app.py` | The Streamlit web app |
 | `sentiment_analysis.py` | VADER scoring, model training and sentiment charts. Also the original command-line script for the IMDB dataset |
 | `tabular_analysis.py` | Column type detection, profiling, outliers, correlations, insights and charts for any dataset |
-| `plotting.py` | Shared chart colours and style |
+| `plotting.py` | Shared chart colours and style (navy and gold) |
+| `style.css` | The app's look: header, tabs, cards and buttons. The theme colours are in `.streamlit/config.toml` |
 | `demo_data.py` | Small synthetic dataset for the "Try sample data" button |
 | `tests/` | Tests for the analysis code (`pip install pytest`, then `pytest`) |
 

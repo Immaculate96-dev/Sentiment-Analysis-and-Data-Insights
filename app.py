@@ -12,6 +12,7 @@ Run locally:
 
 import csv
 import io
+from pathlib import Path
 
 import matplotlib
 
@@ -29,6 +30,11 @@ SENTIMENT_DEFAULT_ROWS = 10_000
 SENTIMENT_MAX_ROWS = 50_000
 
 st.set_page_config(page_title="Dataset analyser", layout="wide")
+
+# navy and gold look (colours live in style.css and .streamlit/config.toml)
+_css_file = Path(__file__).parent / "style.css"
+if _css_file.exists():
+    st.markdown("<style>" + _css_file.read_text(encoding="utf-8") + "</style>", unsafe_allow_html=True)
 
 
 # ------------------------------------------------------------------ helpers
@@ -89,7 +95,14 @@ def csv_bytes(df: pd.DataFrame) -> bytes:
 
 
 # ------------------------------------------------------------- load a dataset
-st.title("Dataset analyser")
+st.markdown(
+    '<div class="hero">'
+    '<p class="hero-title">Dataset analyser</p>'
+    '<p class="hero-sub">Upload a spreadsheet and get an overview, a chart for every column, '
+    'the relationships between them and sentiment analysis for text.</p>'
+    '</div>',
+    unsafe_allow_html=True,
+)
 
 with st.sidebar:
     st.header("Your data")

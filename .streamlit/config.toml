@@ -6,7 +6,13 @@ gatherUsageStats = false
 
 [theme]
 base = "light"
-primaryColor = "#1F6F8B"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F1F4F7"
-textColor = "#1B2733"
+primaryColor = "#B8901A"
+backgroundColor = "#F5F7FA"
+secondaryBackgroundColor = "#E8EDF4"
+textColor = "#0B1F3A"
+
+[theme.sidebar]
+backgroundColor = "#0B1F3A"
+secondaryBackgroundColor = "#14305A"
+textColor = "#E7ECF3"
+primaryColor = "#C9A227"

@@ -1,0 +1,143 @@
+/* Navy and gold look for the app. Loaded by app.py.
+   Change the colours here, in .streamlit/config.toml and in plotting.py (charts). */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap');
+
+:root {
+    --navy: #0B1F3A;
+    --navy-mid: #14305A;
+    --gold: #C9A227;
+    --gold-deep: #B8901A;
+    --paper: #F5F7FA;
+    --line: #DDE3EC;
+    --muted: #44546A;
+    --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+}
+
+.stApp {
+    background: var(--paper);
+}
+
+/* ---- headings in a serif, navy on the page and gold on the sidebar ---- */
+h1, h2, h3 {
+    font-family: var(--serif) !important;
+    color: var(--navy) !important;
+    letter-spacing: -0.01em;
+}
+h2, h3 {
+    font-weight: 600 !important;
+}
+
+/* ---- header band ---- */
+.hero {
+    background: var(--navy);
+    border-bottom: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 1.7rem 2rem 1.5rem 2rem;
+    margin: 0 0 1.4rem 0;
+}
+.hero-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 2.4rem;
+    line-height: 1.1;
+    color: #FFFFFF;
+    margin: 0;
+}
+.hero-sub {
+    color: #B9C5D8;
+    font-size: 1.02rem;
+    margin: 0.55rem 0 0 0;
+    max-width: 46rem;
+}
+
+/* ---- sidebar ---- */
+[data-testid="stSidebar"] {
+    background: var(--navy);
+    border-right: 3px solid var(--gold);
+}
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    color: var(--gold) !important;
+}
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+    color: #E7ECF3;
+}
+[data-testid="stSidebar"] .stButton > button {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    font-weight: 600;
+}
+[data-testid="stSidebar"] .stButton > button:hover {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+/* ---- tabs ---- */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--line);
+}
+.stTabs [data-baseweb="tab"] {
+    color: var(--muted);
+    font-weight: 500;
+}
+.stTabs [aria-selected="true"] {
+    color: var(--navy) !important;
+    font-weight: 600;
+}
+.stTabs [data-baseweb="tab-highlight"] {
+    background-color: var(--gold) !important;
+    height: 3px;
+}
+
+/* ---- metric cards ---- */
+[data-testid="stMetric"] {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+}
+[data-testid="stMetricLabel"] {
+    color: var(--muted);
+}
+[data-testid="stMetricValue"] {
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--navy);
+}
+
+/* ---- the main action button: gold with navy text ---- */
+[data-testid="stBaseButton-primary"],
+.stButton button[kind="primary"] {
+    background: var(--gold);
+    color: var(--navy);
+    border: 1px solid var(--gold);
+    font-weight: 600;
+}
+[data-testid="stBaseButton-primary"]:hover,
+.stButton button[kind="primary"]:hover {
+    background: var(--gold-deep);
+    border-color: var(--gold-deep);
+    color: var(--navy);
+}
+
+/* ---- charts sit on white panels ---- */
+[data-testid="stImage"] img,
+[data-testid="stPyplot"] img {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+}
+
+/* ---- expanders ---- */
+[data-testid="stExpander"] {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #FFFFFF;
+}

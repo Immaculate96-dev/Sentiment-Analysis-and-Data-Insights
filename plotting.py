@@ -1,16 +1,22 @@
 """Shared chart colours and matplotlib style used by every module."""
 
 import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 
 COLORS = {
     "positive": "#2E8B6E",
-    "negative": "#C8553D",
-    "neutral": "#8A94A3",
-    "accent": "#1F6F8B",
-    "accent_light": "#9DB4C8",
-    "grid": "#E3E8EE",
-    "text": "#1B2733",
+    "negative": "#B23A48",
+    "neutral": "#7C8AA0",
+    "accent": "#14305A",        # navy
+    "accent_light": "#A9B8D0",  # soft navy
+    "gold": "#C9A227",
+    "grid": "#E1E6EE",
+    "text": "#0B1F3A",
 }
+
+# white -> navy for counts and shares; gold <- white -> navy for correlations
+NAVY_CMAP = LinearSegmentedColormap.from_list("navy", ["#FFFFFF", COLORS["accent"]])
+NAVY_GOLD_CMAP = LinearSegmentedColormap.from_list("navy_gold", [COLORS["gold"], "#FFFFFF", COLORS["accent"]])
 
 _POSITIVE_NAMES = {"positive", "pos", "1", "1.0", "true", "yes", "good", "y", "+", "p"}
 _NEGATIVE_NAMES = {"negative", "neg", "0", "0.0", "false", "no", "bad", "n", "-"}

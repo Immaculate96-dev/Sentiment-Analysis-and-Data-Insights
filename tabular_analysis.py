@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from plotting import COLORS, apply_style, new_axes
+from plotting import COLORS, NAVY_CMAP, NAVY_GOLD_CMAP, apply_style, new_axes
 
 apply_style()
 
@@ -429,7 +429,7 @@ def plot_numeric_distribution(s: pd.Series, name: str):
         2, 1, figsize=(6.5, 4.2), sharex=True, gridspec_kw={"height_ratios": [4, 1]}
     )
     ax1.hist(values, bins=min(40, max(5, int(np.sqrt(len(values))))), color=COLORS["accent"])
-    ax1.axvline(values.median(), color=COLORS["text"], linestyle="--", linewidth=1, label=f"median {_fmt(values.median())}")
+    ax1.axvline(values.median(), color=COLORS["gold"], linestyle="--", linewidth=2, label=f"median {_fmt(values.median())}")
     ax1.legend(frameon=False)
     ax1.set_title(f"Distribution of {name}")
     ax1.set_ylabel("Rows")
@@ -447,7 +447,7 @@ def plot_correlation_heatmap(corr: pd.DataFrame):
     k = len(corr)
     size = min(9, max(4, 0.6 * k + 2))
     fig, ax = plt.subplots(figsize=(size, size * 0.85))
-    im = ax.imshow(corr.values, cmap="RdBu_r", vmin=-1, vmax=1)
+    im = ax.imshow(corr.values, cmap=NAVY_GOLD_CMAP, vmin=-1, vmax=1)
     ax.set_xticks(range(k))
     ax.set_yticks(range(k))
     ax.set_xticklabels(corr.columns, rotation=45, ha="right")
@@ -512,7 +512,8 @@ def plot_time_series(df: pd.DataFrame, date_col: str, value_col: str = None, agg
         series = data.groupby(period)[value_col].agg(agg)
         ylabel = f"{agg} of {value_col}"
     series.index = series.index.to_timestamp()
-    ax.plot(series.index, series.values, color=COLORS["accent"], linewidth=2, marker="o", markersize=3)
+    ax.plot(series.index, series.values, color=COLORS["accent"], linewidth=2, marker="o", markersize=4,
+            markerfacecolor=COLORS["gold"], markeredgecolor=COLORS["accent"])
     ax.set_title(f"{ylabel} per {_PERIOD_NAMES[freq]}")
     ax.set_ylabel(ylabel)
     fig.autofmt_xdate()
@@ -589,7 +590,7 @@ def _rel_num_num(df, x, y):
     if data[x].nunique() > 1:
         slope, intercept = np.polyfit(data[x], data[y], 1)
         xs = np.array([data[x].min(), data[x].max()])
-        ax.plot(xs, slope * xs + intercept, color=COLORS["negative"], linewidth=2)
+        ax.plot(xs, slope * xs + intercept, color=COLORS["gold"], linewidth=2.5)
     ax.set_xlabel(x)
     ax.set_ylabel(y)
     ax.set_title(f"{y} vs {x}")
@@ -641,7 +642,7 @@ def _rel_cat_cat(df, a, b):
         return None, "Both columns need at least two different values."
     share = table.div(table.sum(axis=1), axis=0)
     fig, ax = plt.subplots(figsize=(max(5.5, 0.9 * table.shape[1] + 3), max(3.5, 0.5 * table.shape[0] + 2)))
-    im = ax.imshow(share.values, cmap="Blues", vmin=0, vmax=1, aspect="auto")
+    im = ax.imshow(share.values, cmap=NAVY_CMAP, vmin=0, vmax=1, aspect="auto")
     ax.set_xticks(range(table.shape[1]))
     ax.set_yticks(range(table.shape[0]))
     ax.set_xticklabels([c[:18] for c in table.columns], rotation=30, ha="right")
