@@ -1,2 +1,8 @@
-﻿IMDB Dataset.csv
+IMDB Dataset.csv
 results.csv
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.streamlit/secrets.toml
